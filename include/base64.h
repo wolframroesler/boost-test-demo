@@ -1,8 +1,10 @@
 /**
- * @brief base64 encoder/decoder header file
+ * @brief Base-64 encoder/decoder header file
  * @author Wolfram Rösler
  * @date 2018-09-29
  */
+
+#pragma once
 
 #include <string>
 

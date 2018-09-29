@@ -1,5 +1,5 @@
-/*
- * @brief base64 encoder/decoder
+/**
+ * @brief Base-64 encoder/decoder functions
  * @author Wolfram Rösler
  * @date 2018-09-29
  */
@@ -34,15 +34,14 @@ namespace base64 {
      *
      * @param val The data to encode (may be binary).
      *
-     * @returns the parameter string in Base-64 encoding.
+     * @returns the encoded data.
      *
      * @see base64::decode
-     * @see base64::encodeSHA256
      */
     std::string encode(const std::string& val) {
-        const auto writePaddChars = (3 - val.length() % 3) % 3;
-        std::string ret(it_base64_t(val.begin()),it_base64_t(val.end()));
-        ret.append(writePaddChars,'=');
+        const auto pad = (3 - val.length() % 3) % 3;
+        auto ret = std::string(it_base64_t(val.begin()),it_base64_t(val.end()));
+        ret.append(pad,'=');
         return ret;
     }
 
@@ -51,18 +50,18 @@ namespace base64 {
      *
      * @param val The Base-64 string to decode.
      *
-     * @returns the decoded parameter string.
+     * @returns the decoded data (may be binary).
      *
      * @throws std::exception if val contains illegal characters.
      *
      * @see base64::encode
      */
     std::string decode(const std::string& val) {
-        std::string base64 = val;
-        const auto paddChars = count(base64.begin(), base64.end(), '=');
+        auto base64 = val;
+        const auto pad = count(base64.begin(),base64.end(),'=');
         std::replace(base64.begin(),base64.end(),'=','A');
-        std::string ret(it_binary_t(base64.begin()), it_binary_t(base64.end()));
-        ret.erase(ret.end()-paddChars,ret.end());
+        auto ret = std::string(it_binary_t(base64.begin()),it_binary_t(base64.end()));
+        ret.erase(ret.end()-pad,ret.end());
         return ret;
     }
 }

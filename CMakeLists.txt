@@ -1,7 +1,7 @@
 # Boost::test demonstration
 # by Wolfram Rösler 2018-09-29
 
-# This was tested with a recent cmake only
+# Require a recent cmake version
 cmake_minimum_required(VERSION 3.5)
 
 # Activate C++14
@@ -23,21 +23,21 @@ add_library(mylib STATIC
 )
 
 # The example application
-project(app)
-add_executable(app
+project(myapp)
+add_executable(myapp
     app/main.cpp
 )
-target_link_libraries(app
+target_link_libraries(myapp
     mylib
 )
 
 # The test program
-project(tester)
-add_executable(tester
+project(mytest)
+add_executable(mytest
     test/main.cpp
     test/base64.cpp
 )
-target_link_libraries(tester
+target_link_libraries(mytest
     mylib
     ${Boost_LIBRARIES}
     ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
@@ -45,4 +45,4 @@ target_link_libraries(tester
 
 # Activate "make test" (aka ctest)
 enable_testing()
-add_test(NAME tester COMMAND tester --random --log_level=test_suite)
+add_test(NAME mytest COMMAND mytest --random --log_level=test_suite)

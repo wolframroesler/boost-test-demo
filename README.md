@@ -22,20 +22,20 @@ $ make
 ```
 $ cd build
 
-$ ./app
-Usage: ./app [ -d ] String
+$ ./myapp
+Usage: ./myapp [ -d ] String
 
-$ ./app "Hello World"
+$ ./myapp "Hello World"
 SGVsbG8gV29ybGQ=
 
-$ ./app -d SGVsbG8gV29ybGQ=
+$ ./myapp -d SGVsbG8gV29ybGQ=
 Hello World
 ```
 
 ### Run the test program
 
 ```
-$ ./tester
+$ ./mytest
 Running 3 test cases...
 
 *** No errors detected
@@ -44,7 +44,7 @@ Running 3 test cases...
 With a progress bar:
 
 ```
-$ ./tester -p
+$ ./mytest -p
 Running 3 test cases...
 
 0%   10   20   30   40   50   60   70   80   90   100%
@@ -57,7 +57,7 @@ Running 3 test cases...
 Just a single test suite:
 
 ```
-$ ./tester -t base64
+$ ./mytest -t base64
 Running 3 test cases...
 
 *** No errors detected
@@ -66,7 +66,7 @@ Running 3 test cases...
 Just a single test case:
 
 ```
-$ ./tester -t base64/enc
+$ ./mytest -t base64/enc
 Running 1 test case...
 
 *** No errors detected
@@ -75,9 +75,9 @@ Running 1 test case...
 With detailed output:
 
 ```
-$ ./tester -t base64/enc -l all
+$ ./mytest -t base64/enc -l all
 Running 1 test case...
-Entering test module "tester"
+Entering test module "mytest"
 /Users/wolfram/Nextcloud/src/boost-test-demo/test/base64.cpp:33: Entering test suite "base64"
 /Users/wolfram/Nextcloud/src/boost-test-demo/test/base64.cpp:46: Entering test case "enc"
 /Users/wolfram/Nextcloud/src/boost-test-demo/test/base64.cpp:47: info: check base64::encode("") =="" has passed
@@ -87,14 +87,17 @@ Entering test module "tester"
 /Users/wolfram/Nextcloud/src/boost-test-demo/test/base64.cpp:51: info: check base64::encode("\x01\x02\x03") =="AQID" has passed
 /Users/wolfram/Nextcloud/src/boost-test-demo/test/base64.cpp:46: Leaving test case "enc"; testing time: 236us
 /Users/wolfram/Nextcloud/src/boost-test-demo/test/base64.cpp:33: Leaving test suite "base64"; testing time: 274us
-Leaving test module "tester"; testing time: 312us
+Leaving test module "mytest"; testing time: 312us
 
 *** No errors detected
 ```
 
 ... and of course you can combine these.
 
-More command line options: http://www.boost.org/doc/libs/1_68_0/libs/test/doc/html/boost_test/runtime_config/summary.html
+More command line options:
+
+* ./mytest --help
+* http://www.boost.org/doc/libs/1_68_0/libs/test/doc/html/boost_test/runtime_config/summary.html
 
 ### Make integration
 
@@ -103,8 +106,8 @@ $ cd build
 $ make test
 Running tests...
 Test project /Users/wolfram/Nextcloud/src/boost-test-demo/build
-    Start 1: tester
-1/1 Test #1: tester ...........................   Passed    0.35 sec
+    Start 1: mytest
+1/1 Test #1: mytest ...........................   Passed    0.35 sec
 
 100% tests passed, 0 tests failed out of 1
 
@@ -117,16 +120,16 @@ To show the details (e. g. when a test failed):
 $ cat Testing/Temporary/LastTest.log
 Start testing: Sep 29 19:25 CEST
 ----------------------------------------------------------
-1/1 Testing: tester
-1/1 Test: tester
-Command: "/Users/wolfram/Nextcloud/src/boost-test-demo/build/tester" "--random" "--log_level=test_suite"
+1/1 Testing: mytest
+1/1 Test: mytest
+Command: "/Users/wolfram/Nextcloud/src/boost-test-demo/build/mytest" "--random" "--log_level=test_suite"
 Directory: /Users/wolfram/Nextcloud/src/boost-test-demo/build
-"tester" start time: Sep 29 19:25 CEST
+"mytest" start time: Sep 29 19:25 CEST
 Output:
 ----------------------------------------------------------
 Running 3 test cases...
 Test cases order is shuffled using seed: 1538257954
-Entering test module "tester"
+Entering test module "mytest"
 /Users/wolfram/Nextcloud/src/boost-test-demo/test/base64.cpp:33: Entering test suite "base64"
 /Users/wolfram/Nextcloud/src/boost-test-demo/test/base64.cpp:71: Entering test case "both"
 /Users/wolfram/Nextcloud/src/boost-test-demo/test/base64.cpp:71: Leaving test case "both"; testing time: 335651us
@@ -135,7 +138,7 @@ Entering test module "tester"
 /Users/wolfram/Nextcloud/src/boost-test-demo/test/base64.cpp:46: Entering test case "enc"
 /Users/wolfram/Nextcloud/src/boost-test-demo/test/base64.cpp:46: Leaving test case "enc"; testing time: 50us
 /Users/wolfram/Nextcloud/src/boost-test-demo/test/base64.cpp:33: Leaving test suite "base64"; testing time: 335937us
-Leaving test module "tester"; testing time: 335956us
+Leaving test module "mytest"; testing time: 335956us
 
 *** No errors detected
 
@@ -143,8 +146,8 @@ Leaving test module "tester"; testing time: 335956us
 Test time =   0.35 sec
 ----------------------------------------------------------
 Test Passed.
-"tester" end time: Sep 29 19:25 CEST
-"tester" time elapsed: 00:00:00
+"mytest" end time: Sep 29 19:25 CEST
+"mytest" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 End testing: Sep 29 19:25 CEST

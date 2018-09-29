@@ -1,5 +1,5 @@
-/*
- * @brief base64 sample application
+/**
+ * @brief Base-64 encoder/decoder application
  * @author Wolfram Rösler
  * @date 2018-09-29
  */
@@ -28,6 +28,7 @@ int main(int argc,char** argv) {
             std::cerr << "Usage: " << argv[0] << " [ -d ] String" << std::endl;
             return EXIT_FAILURE;
         }
+
     } catch(const std::exception& e) {
         std::cerr << e.what() << std::endl;
         return EXIT_FAILURE;
