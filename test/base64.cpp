@@ -57,8 +57,12 @@ BOOST_FIXTURE_TEST_CASE(dec,Fx) {
  * Test base-64 encoding and decoding with random strings.
  */
 BOOST_FIXTURE_TEST_CASE(both,Fx) {
-    for(auto size : { 1, 100, 1000, 10'000 }) {
-        for(auto _=0;_<10;++_) {
+
+    // Try input strings of various sizes
+    for(const auto size : { 0, 1, 100, 1000, 10'000, 100'000 }) {
+
+        // Show the following along with all assertion messages
+        BOOST_TEST_CONTEXT("String size: " << size) {
 
             // Make a random binary string of this size
             const auto str = RandomData(size);
@@ -68,7 +72,7 @@ BOOST_FIXTURE_TEST_CASE(both,Fx) {
             const auto dec = base64::decode(enc);
 
             // Compare
-            BOOST_TEST(dec==str,"String size: " + std::to_string(str.size()));
+            BOOST_TEST(dec==str);
         }
     }
 }
