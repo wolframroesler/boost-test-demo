@@ -16,10 +16,22 @@
 // Define the name of this test suite
 BOOST_AUTO_TEST_SUITE(base64)
 
+// Test fixture
+struct Fx {
+
+    // Set-up procedure (invoked before every test case)
+    Fx() {
+    }
+
+    // Tear-down procedure (invoked after every test case)
+    ~Fx() {
+    }
+};
+
 /*
  * Test base-64 encoding using explicit examples.
  */
-BOOST_AUTO_TEST_CASE(enc) {
+BOOST_FIXTURE_TEST_CASE(enc,Fx) {
     BOOST_TEST(base64::encode("")                   =="");
     BOOST_TEST(base64::encode(std::string("",1))    =="AA==");
     BOOST_TEST(base64::encode("  ")                 =="ICA=");
@@ -30,7 +42,7 @@ BOOST_AUTO_TEST_CASE(enc) {
 /*
  * Test base-64 decoding using explicit examples.
  */
-BOOST_AUTO_TEST_CASE(dec) {
+BOOST_FIXTURE_TEST_CASE(dec,Fx) {
     BOOST_TEST(base64::decode("")                   =="");
     BOOST_TEST(base64::decode("AA==")               ==std::string("",1));
     BOOST_TEST(base64::decode("ICA=")               =="  ");
@@ -44,7 +56,7 @@ BOOST_AUTO_TEST_CASE(dec) {
 /*
  * Test base-64 encoding and decoding with random strings.
  */
-BOOST_AUTO_TEST_CASE(both) {
+BOOST_FIXTURE_TEST_CASE(both,Fx) {
     for(auto size : { 1, 100, 1000, 10'000 }) {
         for(auto _=0;_<10;++_) {
 
