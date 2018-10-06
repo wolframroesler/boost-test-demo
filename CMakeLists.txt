@@ -36,6 +36,7 @@ project(mytest)
 add_executable(mytest
     test/main.cpp
     test/base64.cpp
+    test/datadriven.cpp
 )
 target_link_libraries(mytest
     mylib

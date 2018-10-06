@@ -36,7 +36,7 @@ Hello World
 
 ```
 $ ./mytest
-Running 3 test cases...
+Running 11 test cases...
 
 *** No errors detected
 ```
@@ -45,7 +45,7 @@ With a progress bar:
 
 ```
 $ ./mytest -p
-Running 3 test cases...
+Running 11 test cases...
 
 0%   10   20   30   40   50   60   70   80   90   100%
 |----|----|----|----|----|----|----|----|----|----|
